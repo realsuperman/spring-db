@@ -40,17 +40,6 @@ public class MemberServiceV3_1 {
         memberRepository.update(toId,toMember.getMoney()+money);
     }
 
-    private void release(Connection conn) {
-        if(conn!=null){
-            try{
-                conn.setAutoCommit(true); // 커넥션 풀 고려
-                conn.close();
-            }catch(Exception e){
-                log.info("error",e);
-            }
-        }
-    }
-
     private void validation(Member toMember) {
         if(toMember.getMemberId().equals("ex")){
             throw new IllegalStateException("이체중 예외 발생");
